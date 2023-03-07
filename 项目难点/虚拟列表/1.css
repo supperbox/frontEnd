@@ -1,0 +1,24 @@
+.container {
+  height: 500px;
+  width: 1200px;
+  position: relative;
+  background-color: #a962d8;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.lists {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.list {
+  box-sizing: border-box;
+  height: 50px;
+  width: 100%;
+  background-color: #f12004;
+  border: 1px solid #a962d8;
+  margin: 0;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A</title>
+</head>
+<body>
+<script>
+    function jsonp({url,params,cb}) {
+        return new Promise((resolve,reject)=>{
+            window[cb] = function (data) {
+                resolve(data)
+                document.body.removeChild(script)
+            }
+            let script = document.createElement('script')
+            params = {...params,cb}
+            let arrs = []
+            for(let key in params){
+                arrs.push(`${key}=${params[key]}`)
+            }
+            script.src = `${url}?${arrs.join('&')}`
+            document.body.appendChild(script)
+        })
+    }
+    // 只能发送get请求，不支持post、put、delete
+    // 存在 XSS攻击 不采用
+    jsonp({
+        url:'http://localhost:3000/say',
+        params:{wd:"我爱你"},
+        cb:'show'
+    }).then(data => {
+        console.log(data);
+    })
+</script>
+</body>
+</html>

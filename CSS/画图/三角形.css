@@ -1,0 +1,14 @@
+#triangle {
+    border: 100px solid transparent;
+    border-bottom: red 100px solid;
+    box-sizing: border-box;
+    width: 200px;
+    height: 100px;
+}
+
+#test{
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    border-radius: 100px 0 0 100px;
+}

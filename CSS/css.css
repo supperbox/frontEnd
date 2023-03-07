@@ -1,0 +1,44 @@
+.box1 {
+    height: 500px;
+    width: 500px;
+    background-color: #73ce77;
+    position: relative;
+/*  消除inline-block间隙  */
+    letter-spacing: -5px;
+    margin-bottom: 20px;
+}
+
+.box2 {
+    height: 500px;
+    width: 500px;
+    background-color: #73aace;
+    position: relative;
+
+/*  消除inline-block间隙  */
+    letter-spacing: -5px;
+
+    margin-top: 10px;
+
+}
+
+/*  绝对定位+transform */
+
+/*.box2{*/
+/*    position: absolute;*/
+/*    left: 50%;*/
+/*    top: 50%;*/
+/*    transform: translateX(-50%) translateY(-50%);*/
+/*    height: 200px;*/
+/*    width: 200px;*/
+/*    background-color: #431893;*/
+/*}*/
+
+/*.box2{*/
+/*    height: 20px;*/
+/*    width: 20px;*/
+/*    background-color: #431893;*/
+/*}*/
+
+span {
+    letter-spacing: 0;
+}

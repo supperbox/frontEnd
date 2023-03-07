@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A</title>
+</head>
+<body>
+<iframe src="http://localhost:4000/c.html" frameborder="0" id="iframe" onload="load()"></iframe>
+<script>
+    let first = true
+    function load() {
+        let iframe = document.getElementById('iframe')
+        if(first){
+            first = false
+            // console.log(iframe.contentWindow.name);
+            iframe.src = 'http://localhost:3000/b.html'
+        }else {
+            console.log(iframe.contentWindow.name);
+        }
+    }
+</script>
+</body>
+</html>

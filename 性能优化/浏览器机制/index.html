@@ -1,0 +1,56 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <script src="1.js" defer></script>-->
+<!--    <script>-->
+<!--        // document.onreadystatechange = function () {-->
+<!--        //     console.log(document.readyState);-->
+<!--        // }-->
+
+<!--        window.addEventListener('DOMContentLoaded',()=>{-->
+<!--            console.log('dom加载解析完成');-->
+<!--        })-->
+
+<!--        window.addEventListener('load',()=>{-->
+<!--            console.log('所有资源加载完成');-->
+<!--        })-->
+<!--    </script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<link rel="stylesheet" href="2.css" onload="console.log('css');">-->
+<!--<script>-->
+
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./1.js" defer></script>
+    <script>
+        console.log("event Begin")
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOMContentLoaded finish')
+        })
+        window.onload = function () {
+            console.log('loaded')
+        }
+    </script>
+</head>
+<body>
+<div>
+    <p>111</p>
+    <link rel="stylesheet" href="2.css" onload="console.log('style loaded')">
+    <script>
+        let a = 1
+    </script>
+</div>
+</body>
+<html>

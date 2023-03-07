@@ -1,0 +1,92 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="container">
+  <div class="container" @scroll="scrollHandle" ref="container">
+    <div class="background" :style="{height:height}"></div>
+    <div class="lists" ref="lists">
+      <div v-for="item in listArr" class="list">
+        {{ item.index }}--------{{ item.name}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <script src="meta.js" defer></script> -->
+<script>
+  const { createApp } = Vue;
+
+  createApp({
+    data() {
+      return {
+        arr: [],
+        height: 0,
+        beginIndex: 0,
+        itemHeight: 50,
+        offsetTop: 0,
+      };
+    },
+
+    computed: {
+      lastIndex() {
+        return this.beginIndex + 20;
+      },
+      listArr() {
+        return this.arr.slice(this.beginIndex, this.lastIndex);
+      },
+    },
+
+    methods: {
+      scrollHandle() {
+        let top = this.$refs.container.scrollTop;
+        this.beginIndex = Math.floor(top / this.itemHeight);
+        this.$refs.lists.style.webkitTransform = `translate3d(0,${
+          this.beginIndex * this.itemHeight
+        }px,0)`;
+      },
+    },
+
+    created() {
+      for (let i = 0; i < 1000; i++) {
+        let list = {};
+        list.index = i;
+        list.name = i % 2 === 0 ? "jlw" : "ghl";
+        this.arr.push(list);
+      }
+      this.height = this.arr.length * 50 + "px";
+    },
+  }).mount("#container");
+</script>
+
+<style>
+  .container {
+    height: 500px;
+    width: 800px;
+    position: relative;
+    background-color: #16a4c7;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  .background {
+    width: 100%;
+  }
+
+  .lists {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .list {
+    box-sizing: border-box;
+    height: 50px;
+    width: 100%;
+    background-color: #f12004;
+    border: 1px solid #a962d8;
+    margin: 0;
+
+    text-align: center;
+    line-height: 50px;
+  }
+</style>

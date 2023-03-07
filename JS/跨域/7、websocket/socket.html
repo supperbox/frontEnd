@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // socket.io库
+    let socket = new WebSocket('ws://localhost:3000')
+    socket.onopen = function () {
+        socket.send('jlw')
+    }
+    socket.onmessage = function (data) {
+        console.log(data);
+    }
+</script>
+</body>
+</html>
