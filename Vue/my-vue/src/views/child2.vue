@@ -1,6 +1,6 @@
 <template>
   <div class="child2">
-    <div>{{ $attrs.age }}</div>
+    <div>{{ $attrs.myName }}</div>
     <button @click="emit('test')">emitClick</button>
     <button @click="emit('btn')">emitClick</button>
   </div>
@@ -10,11 +10,11 @@
 import { inject, onMounted, useAttrs } from 'vue'
 
 const emit = defineEmits(['test', 'btn'])
-const child1name = inject('child1name')
 
 onMounted(() => {
   console.log(useAttrs())
-  console.log(child1name)
+  console.log(import.meta.env.NAME)
+  console.log(import.meta.env.VITE_NAME)
 })
 </script>
 

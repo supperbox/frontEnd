@@ -2,8 +2,7 @@
   <div class="about">
     <child1
       ref="childRef"
-      name1="max1"
-      :name2="name"
+      :myName="name"
       :age="age"
       @btn="onBtn"
       @test="onTest"
@@ -11,19 +10,17 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
 import Child1 from './child1.vue'
 
 let name = 'jlw'
 let age = 12
-let childRef = ref()
 
 function onBtn() {
-  console.log('btn')
+  console.log('emit btn')
 }
 
 function onTest() {
-  console.log('test')
+  console.log('emit test')
 }
 </script>
 <style>
