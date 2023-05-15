@@ -1,42 +1,82 @@
-let times = 3;
-let begin = "2 1 5";
-let end = "6 3 7";
-
-let beginArr = begin.split(" ");
-let endArr = end.split(" ");
-let arr = [];
-let min = Number.MAX_VALUE;
-let max = 0;
-for (let i = 0; i < times; i++) {
-  let a = beginArr[i];
-  let b = endArr[i];
-  min = Math.min(a, min);
-  max = Math.max(b, max);
-  arr.push([a, b]);
-}
-
-console.log(arr);
-let result = [];
-for (let i = min; i <= max; i++) {
-  let res = 0;
-  arr.forEach((item) => {
-    if (i >= item[0] && i <= item[1]) {
-      res++;
-    }
-  });
-  result.push(res);
-}
-
-let big = 0;
-result.forEach((item) => {
-  big = Math.max(item, big);
-});
-
-let tip = 0;
-result.forEach((item) => {
-  if (item === big) {
-    tip++;
+/**
+ * @param {number} capacity
+ */
+class Node {
+  constructor(key = null, val = null, pre = null, next = null) {
+    this.key = key;
+    this.val = val;
+    this.pre = pre;
+    this.next = next;
   }
-});
+}
 
-console.log(big, " ", tip);
+var LRUCache = function (capacity) {
+  this.limit = capacity;
+  this.count = 0;
+  this.map = {};
+  this.head = new Node();
+  this.last = new Node();
+  this.head.next = this.last;
+  this.last.pre = this.head;
+
+  this.removeNode = (node) => {
+    let temp = node.pre;
+    let temp2 = node.next;
+    temp.next = temp2;
+    temp2.pre = temp;
+  };
+
+  this.insertNode = (node) => {
+    let temp = this.head.next;
+    this.head.next = node;
+    node.pre = this.head;
+    node.next = temp;
+    temp.pre = node;
+  };
+};
+
+/**
+ * @param {number} key
+ * @return {number}
+ */
+LRUCache.prototype.get = function (key) {
+  let node = this.map[key];
+  if (node) {
+    this.removeNode(node);
+    this.insertNode(node);
+    return node.val;
+  }
+  return -1;
+};
+
+/**
+ * @param {number} key
+ * @param {number} value
+ * @return {void}
+ */
+LRUCache.prototype.put = function (key, value) {
+  if (this.map[key]) {
+    this.map[key].val = value;
+    this.removeNode(this.map[key]);
+    this.insertNode(this.map[key]);
+  } else {
+    if (this.count === this.limit) {
+      let node = this.last.pre;
+      this.removeNode(this.last.pre);
+      delete this.map[node.key];
+      this.count--;
+    }
+
+    let node = new Node(key, value);
+    this.map[key] = node;
+    this.insertNode(node);
+    this.count++;
+  }
+};
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * var obj = new LRUCache(capacity)
+ * var param_1 = obj.get(key)
+ * obj.put(key,value)
+ */
